@@ -1,0 +1,63 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/Web/Web.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "detail": "建置專案"
+        },
+        {
+            "label": "publish (FDD)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+				"-c",
+				"Release",
+                "${workspaceFolder}/src/Web/Web.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "detail": "Framework 依存性 (需要 .NET Core 環境及 .NET Core 版本要能夠運行 App)"
+        },
+        {
+            "label": "publish (SCD [win-x64])",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+				"-c",
+				"Release",
+				"-r",
+				"win-x64",
+				"--self-contained",
+				"true",
+                "${workspaceFolder}/src/Web/Web.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "detail": "獨立式 (.NET Core 版本擁有獨立的控制權, 但需要較大磁碟空間)"
+        },
+        {
+            "label": "publish (SCD [linux-x64])",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+				"-c",
+				"Release",
+				"-r",
+				"linux-x64",
+				"--self-contained",
+				"true",
+                "${workspaceFolder}/src/Web/Web.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "detail": "獨立式 (.NET Core 版本擁有獨立的控制權, 但需要較大磁碟空間)"
+        }
+    ]
+}
