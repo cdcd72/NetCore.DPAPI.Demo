@@ -1,0 +1,10 @@
+<p *ngIf="!region"><em>Loading...</em></p>
+
+<div *ngIf="region">
+  <h1 id="tablep">{{ region.name }}</h1>
+  <p>Temp. (C)：{{ region.weatherForecast.temperatureC }}</p>
+  <p>Temp. (F)：{{ region.weatherForecast.temperatureF }}</p>
+  <p>Summary：{{ region.weatherForecast.summary }}</p>
+  <p>DateTime：{{ region.weatherForecast.date | date: 'yyyy/MM/dd hh:mm:ss a' }}</p>
+</div>
+

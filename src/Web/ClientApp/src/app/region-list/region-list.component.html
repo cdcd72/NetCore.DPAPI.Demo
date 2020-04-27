@@ -1,0 +1,19 @@
+<h1 id="tableLabel">Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!regions"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="regions">
+  <thead>
+    <tr>
+      <th>Region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let region of regions">
+      <td><a [routerLink]="['/regions', region.id]">{{ region.name }}</a></td>
+    </tr>
+  </tbody>
+</table>
+
