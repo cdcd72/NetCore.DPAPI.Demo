@@ -16,6 +16,6 @@ export class RegionListComponent {
 }
 
 interface Region {
-  id: number;
+  encryptedId: string;
   name: string;
 }

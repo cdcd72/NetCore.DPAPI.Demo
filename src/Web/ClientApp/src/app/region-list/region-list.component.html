@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let region of regions">
-      <td><a [routerLink]="['/regions', region.id]">{{ region.name }}</a></td>
+      <td><a [routerLink]="['/regions', region.encryptedId]">{{ region.name }}</a></td>
     </tr>
   </tbody>
 </table>

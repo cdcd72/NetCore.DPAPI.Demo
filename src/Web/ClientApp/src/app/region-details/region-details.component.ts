@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './region-details.component.html'
 })
 export class RegionDetailsComponent implements OnInit {
-  public regionId: number;
+  public regionId: string;
   public region: Region;
 
   private http: HttpClient;
@@ -24,7 +24,7 @@ export class RegionDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.regionId = parseInt(params.get('regionId'), 10);
+      this.regionId = params.get('regionId');
     });
     this.getWeatherForecast();
   }
