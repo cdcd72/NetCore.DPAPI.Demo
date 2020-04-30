@@ -2,6 +2,6 @@
 {
     public class DataProtectionPurposeStrings
     {
-        public readonly string RegionIdRouteValue = "RegionIdRouteValue";
+        public readonly string[] RegionIdRouteValue = new string[] { "Web.Controllers.RegionController", "RegionIdRouteValue" };
     }
 }
