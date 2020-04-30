@@ -11,14 +11,18 @@ namespace Web.Controllers
     [Route("[controller]")]
     public class RegionController : ControllerBase
     {
-        private static IEnumerable<Region> Regions => GetRegions();
+        private readonly ILogger<RegionController> _logger;
 
-        private readonly ILogger<RegionController> logger;
+        private IEnumerable<Region> Regions => GetRegions();
+
+        #region Constructor
 
         public RegionController(ILogger<RegionController> logger)
         {
-            this.logger = logger;
+            this._logger = logger;
         }
+
+        #endregion
 
         [HttpGet]
         public IEnumerable<Region> Get()
@@ -35,28 +39,32 @@ namespace Web.Controllers
 
         #region Private Method
 
-        private static IEnumerable<Region> GetRegions()
+        private IEnumerable<Region> GetRegions()
         {
             string[] regionNames = new[] {
                 "Taipei", "Taichung", "Chiayi", "Kaohsiung", "Taitung"
             };
 
+            return Enumerable.Range(0, regionNames.Length).Select(index => new Region {
+                Id = index,
+                Name = regionNames[index],
+                WeatherForecast = GetWeatherForecast()
+            }).ToArray();
+        }
+
+        private WeatherForecast GetWeatherForecast()
+        {
             string[] summaries = new[] {
                 "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
             };
 
             var rng = new Random();
 
-            return Enumerable.Range(0, regionNames.Length).Select(index => new Region {
-                Id = index,
-                Name = regionNames[index],
-                WeatherForecast = new WeatherForecast() {
-                    Date = DateTime.Now.AddDays(index),
-                    TemperatureC = rng.Next(-20, 55),
-                    Summary = summaries[rng.Next(summaries.Length)]
-                }
-            })
-            .ToArray();
+            return new WeatherForecast() {
+                Date = DateTime.Now.AddDays(1),
+                TemperatureC = rng.Next(-20, 55),
+                Summary = summaries[rng.Next(summaries.Length)]
+            };
         }
 
         #endregion
